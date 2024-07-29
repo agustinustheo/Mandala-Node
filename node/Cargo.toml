@@ -17,7 +17,7 @@ serde_json = "1.0.111"
 tokio = { workspace = true }
 
 # Local
-mandala-runtime = { path = "../runtime/mandala", optional = true }
+# mandala-runtime = { path = "../runtime/mandala", optional = true }
 niskala-runtime = { path = "../runtime/niskala", optional = true }
 
 # Substrate
@@ -121,7 +121,7 @@ runtime-benchmarks = [
 	"cumulus-primitives-core/runtime-benchmarks",
 	"frame-benchmarking-cli/runtime-benchmarks",
 	"frame-benchmarking/runtime-benchmarks",
-	"mandala-runtime/runtime-benchmarks",
+	# "mandala-runtime/runtime-benchmarks",
 	"polkadot-cli/runtime-benchmarks",
 	"polkadot-primitives/runtime-benchmarks",
 	"sc-service/runtime-benchmarks",
@@ -129,7 +129,7 @@ runtime-benchmarks = [
 ]
 try-runtime = [
 	"niskala-runtime/try-runtime",
-	"mandala-runtime/try-runtime",
+	# "mandala-runtime/try-runtime",
 	"polkadot-cli/try-runtime",
 	"sp-runtime/try-runtime",
 ]

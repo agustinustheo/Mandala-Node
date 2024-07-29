@@ -3,8 +3,6 @@ resolver = "2"
 members = [
 	"node",
 	"pallets/*",
-	"runtime/mandala",
-	"./runtime/niskala",
 	"runtime/niskala",
 	"primitives",
 ]
