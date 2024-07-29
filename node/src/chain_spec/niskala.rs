@@ -1,45 +1,30 @@
-use std::{ collections::BTreeMap, marker::PhantomData };
+use std::{collections::BTreeMap, marker::PhantomData};
 
+use cumulus_primitives_core::ParaId;
 use fp_evm::GenesisAccount;
 use niskala_runtime::{
-    AccountId,
-    AuraConfig,
-    AuraExtConfig,
-    BalancesConfig,
-    CollatorSelectionConfig,
-    EVMChainIdConfig,
-    EVMConfig,
-    EthereumConfig,
-    ParachainInfoConfig,
-    PolkadotXcmConfig,
-    RuntimeGenesisConfig,
-    SS58Prefix,
-    SessionConfig,
-    Signature,
-    SudoConfig,
-    SystemConfig,
-    EXISTENTIAL_DEPOSIT,
-    BaseFeeConfig,
-    WASM_BINARY,
-    UNIT,
+    AccountId, AuraConfig, AuraExtConfig, BalancesConfig, BaseFeeConfig, CollatorSelectionConfig,
+    EVMChainIdConfig, EVMConfig, EthereumConfig, ParachainInfoConfig, PolkadotXcmConfig,
+    RuntimeGenesisConfig, SS58Prefix, SessionConfig, Signature, SudoConfig, SystemConfig,
+    EXISTENTIAL_DEPOSIT, UNIT, WASM_BINARY,
 };
-use sc_chain_spec::{ ChainSpecBuilder, ChainSpecExtension, ChainSpecGroup };
+use sc_chain_spec::{ChainSpecBuilder, ChainSpecExtension, ChainSpecGroup};
 use sc_network::config::MultiaddrWithPeerId;
-use sc_service::{ ChainType, GenericChainSpec, Properties };
+use sc_service::{ChainType, GenericChainSpec, Properties};
 use sc_telemetry::TelemetryEndpoints;
-use serde::{ Serialize, Deserialize };
+use serde::{Deserialize, Serialize};
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
-use sp_core::{ crypto::Ss58Codec, ecdsa, sr25519, Pair, Public, TypedGet, H160, U256 };
-use sp_runtime::{ traits::{ IdentifyAccount, Verify }, MultiAddress };
-use cumulus_primitives_core::ParaId;
+use sp_core::{crypto::Ss58Codec, ecdsa, sr25519, Pair, Public, TypedGet, H160, U256};
+use sp_runtime::{
+    traits::{IdentifyAccount, Verify},
+    MultiAddress,
+};
 
 macro_rules! account_id {
     ($id:literal) => {
         AccountId::from(hex_literal::hex!($id))
     };
-    () => {
-
-    };
+    () => {};
 }
 // The URL for the telemetry server.
 const DEFAULT_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -111,21 +96,34 @@ pub trait CustomChainSpecProperties {
     fn endowed_accounts() -> Vec<AccountId> {
         vec![
             // Balthar
-            AccountId::from(hex_literal::hex!("3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0")),
+            AccountId::from(hex_literal::hex!(
+                "3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0"
+            )),
             // Charleth
-            AccountId::from(hex_literal::hex!("798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc")),
+            AccountId::from(hex_literal::hex!(
+                "798d4Ba9baf0064Ec19eB4F0a1a45785ae9D6DFc"
+            )),
             // Dorothy
-            AccountId::from(hex_literal::hex!("773539d4Ac0e786233D90A233654ccEE26a613D9")),
+            AccountId::from(hex_literal::hex!(
+                "773539d4Ac0e786233D90A233654ccEE26a613D9"
+            )),
             // Ethan
-            AccountId::from(hex_literal::hex!("Ff64d3F6efE2317EE2807d223a0Bdc4c0c49dfDB")),
+            AccountId::from(hex_literal::hex!(
+                "Ff64d3F6efE2317EE2807d223a0Bdc4c0c49dfDB"
+            )),
             // Faith
-            AccountId::from(hex_literal::hex!("C0F0f4ab324C46e55D02D0033343B4Be8A55532d"))
+            AccountId::from(hex_literal::hex!(
+                "C0F0f4ab324C46e55D02D0033343B4Be8A55532d"
+            )),
         ]
     }
 
     fn initial_authorities() -> Vec<AuraId> {
         // assuming for local testing the relay chain is alice and bob
-        vec![authority_keys_from_seed("Charlie"), authority_keys_from_seed("Ferdie")]
+        vec![
+            authority_keys_from_seed("Charlie"),
+            authority_keys_from_seed("Ferdie"),
+        ]
     }
 
     fn enable_println() -> bool {
@@ -134,7 +132,9 @@ pub trait CustomChainSpecProperties {
 
     fn root_key() -> AccountId {
         // Balthar
-        AccountId::from(hex_literal::hex!("3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0"))
+        AccountId::from(hex_literal::hex!(
+            "3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0"
+        ))
     }
 
     fn runtime_genesis_config() -> serde_json::Value {
@@ -216,18 +216,18 @@ pub trait CustomChainSpecProperties {
     fn build() -> ChainSpec {
         ChainSpecBuilder::new(
             niskala_runtime::WASM_BINARY.expect("wasm binary was not built, please build it!"),
-            Self::extension()
+            Self::extension(),
         )
-            .with_name(Self::chain_name())
-            .with_id(Self::chain_identifier())
-            .with_chain_type(Self::chain_type())
-            .with_genesis_config_patch(Self::runtime_genesis_config())
-            .with_boot_nodes(Self::bootnodes())
-            .with_telemetry_endpoints(Self::telemetry_endpoints())
-            .with_protocol_id(Self::protocol_id())
-            .with_fork_id(Self::fork_id())
-            .with_properties(Self::chain_spec_prop())
-            .build()
+        .with_name(Self::chain_name())
+        .with_id(Self::chain_identifier())
+        .with_chain_type(Self::chain_type())
+        .with_genesis_config_patch(Self::runtime_genesis_config())
+        .with_boot_nodes(Self::bootnodes())
+        .with_telemetry_endpoints(Self::telemetry_endpoints())
+        .with_protocol_id(Self::protocol_id())
+        .with_fork_id(Self::fork_id())
+        .with_properties(Self::chain_spec_prop())
+        .build()
     }
 
     fn get_evm_accounts() -> BTreeMap<H160, fp_evm::GenesisAccount> {
@@ -335,7 +335,7 @@ impl CustomChainSpecProperties for NodeChainSpec<Live> {
             // collator 1
             authority_keys_from_public("5HMa8oTYwr5viSwQBSbWgM7vxxiCcgLUgSbcumExjEyJ8sTr"),
             // collator 2
-            authority_keys_from_public("5HTaZj7BtHFN5NsK5CYcK99ZPmH8ESz78hybbjmftKsCKyn1")
+            authority_keys_from_public("5HTaZj7BtHFN5NsK5CYcK99ZPmH8ESz78hybbjmftKsCKyn1"),
         ]
     }
 
@@ -358,7 +358,7 @@ impl CustomChainSpecProperties for NodeChainSpec<Live> {
             // team
             account_id!("cf34cEfE42aB033Db814639f72EA37baD3e82219"),
             // foundation
-            account_id!("e6D8A2F367250bc677a3D566E3Aeb526697C7399")
+            account_id!("e6D8A2F367250bc677a3D566E3Aeb526697C7399"),
         ]
     }
 
@@ -388,8 +388,7 @@ pub struct Account;
 
 impl Account {
     pub fn get_from_seed_with_ecdsa(seed: &str) -> ecdsa::Public {
-        ecdsa::Pair
-            ::from_string(&format!("//{}", seed), None)
+        ecdsa::Pair::from_string(&format!("//{}", seed), None)
             .expect("internal values are valid; qed")
             .public()
     }

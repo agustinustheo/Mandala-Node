@@ -21,6 +21,11 @@ scale-info = { version = "2.10.0", default-features = false, features = [
 ] }
 smallvec = "1.11.0"
 
+# Pallets
+
+# The pallet in this zk-snarks.
+pallet-zk-snarks = { path = "../../pallets/zk-snarks", default-features = false }
+
 
 # Substrate
 frame-benchmarking = { workspace = true, optional = true }
@@ -79,6 +84,7 @@ pallet-multisig = { workspace = true }
 [features]
 default = ["std"]
 std = [
+	"pallet-zk-snarks/std",
 	"codec/std",
 	"cumulus-pallet-aura-ext/std",
 	"cumulus-pallet-parachain-system/std",
@@ -132,6 +138,7 @@ std = [
 ]
 
 runtime-benchmarks = [
+	"pallet-zk-snarks/runtime-benchmarks",
 	"cumulus-pallet-parachain-system/runtime-benchmarks",
 	"cumulus-pallet-session-benchmarking/runtime-benchmarks",
 	"cumulus-pallet-xcmp-queue/runtime-benchmarks",
@@ -157,6 +164,7 @@ runtime-benchmarks = [
 ]
 
 try-runtime = [
+	"pallet-zk-snarks/try-runtime",
 	"cumulus-pallet-aura-ext/try-runtime",
 	"cumulus-pallet-parachain-system/try-runtime",
 	"cumulus-pallet-xcm/try-runtime",

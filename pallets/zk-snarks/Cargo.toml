@@ -1,0 +1,51 @@
+[package]
+name = "pallet-zk-snarks"
+version = "4.0.0-dev"
+authors = ["Michał Graliński <michal.gralinski@brightinventions.pl>"]
+edition = "2021"
+license = "Unlicense"
+description = "FRAME example pallet"
+readme = "README.md"
+publish = false
+repository = "https://github.com/bright/groth16-verifier-pallet/"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = [
+	"derive",
+] }
+scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
+frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false, optional = true }
+frame-support = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false, features = ["experimental"] }
+frame-system = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
+sp-io = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
+sp-std = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
+bls12_381 = "0.7.0"
+pairing = "0.22.0"
+group = "0.12.1"
+serde = { version = "1.0.149", default-features = false, features = ["derive", "alloc"] }
+serde_json = { version = "1.0.89", default-features = false, features = ["alloc"]}
+uint = { version = "0.8", default-features = false }
+
+[dev-dependencies]
+sp-core = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+    "frame-benchmarking/std",
+	"frame-support/std",
+	"frame-system/std",
+	"scale-info/std",
+    "sp-io/std",
+	"sp-runtime/std",
+	"sp-std/std",
+]
+runtime-benchmarks = [
+    "frame-benchmarking/runtime-benchmarks",
+    ]
+try-runtime = ["frame-support/try-runtime"]
