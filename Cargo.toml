@@ -129,6 +129,7 @@ cumulus-pallet-session-benchmarking = { git = "https://github.com/MandalaChain/p
 cumulus-pallet-xcm = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 cumulus-pallet-xcmp-queue = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 cumulus-primitives-timestamp = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
+cumulus-primitives-proof-size-hostfunction = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 cumulus-primitives-utility = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 pallet-collator-selection = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 parachain-info = { package = "staging-parachain-info", git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }

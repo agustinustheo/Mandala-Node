@@ -5918,6 +5918,7 @@ dependencies = [
  "cumulus-client-service",
  "cumulus-primitives-core",
  "cumulus-primitives-parachain-inherent",
+ "cumulus-primitives-proof-size-hostfunction",
  "cumulus-relay-chain-interface",
  "fc-api",
  "fc-consensus",

@@ -66,6 +66,7 @@ cumulus-client-consensus-proposer = { workspace = true }
 cumulus-client-service = { workspace = true }
 cumulus-primitives-core = { workspace = true }
 cumulus-primitives-parachain-inherent = { workspace = true }
+cumulus-primitives-proof-size-hostfunction = { workspace = true }
 cumulus-relay-chain-interface = { workspace = true }
 color-print = "0.3.4"
 sp-inherents = { workspace = true, features = ["std"] }

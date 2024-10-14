@@ -58,18 +58,21 @@ pub struct ParachainNativeExecutor;
 
 #[cfg(feature = "runtime-benchmarks")]
 pub type HostFunctions = (
-    sp_io::SubstrateHostFunctions,
+	sp_io::SubstrateHostFunctions,
+	sp_io::storage::HostFunctions,
     cumulus_client_service::ParachainHostFunctions,
     cumulus_client_service::storage_proof_size::HostFunctions,
-    moonbeam_primitives_ext::moonbeam_ext::HostFunctions,
+	cumulus_primitives_proof_size_hostfunction::storage_proof_size::HostFunctions,
     frame_benchmarking::benchmarking::HostFunctions,
 );
 
 #[cfg(not(feature = "runtime-benchmarks"))]
 pub type HostFunctions = (
-    sp_io::SubstrateHostFunctions,
+	sp_io::SubstrateHostFunctions,
+	sp_io::storage::HostFunctions,
     cumulus_client_service::ParachainHostFunctions,
     cumulus_client_service::storage_proof_size::HostFunctions,
+	cumulus_primitives_proof_size_hostfunction::storage_proof_size::HostFunctions,
     moonbeam_primitives_ext::moonbeam_ext::HostFunctions,
 );
 
