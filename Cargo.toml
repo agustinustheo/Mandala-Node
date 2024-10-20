@@ -158,6 +158,7 @@ pallet-evm-chain-id = { git = "https://github.com/MandalaChain/frontier", branch
 pallet-evm-precompile-modexp = { git = "https://github.com/MandalaChain/frontier", branch = "mandala-polkadot-v1.11.0", default-features = false }
 pallet-evm-precompile-sha3fips = { git = "https://github.com/MandalaChain/frontier", branch = "mandala-polkadot-v1.11.0", default-features = false }
 pallet-evm-precompile-simple = { git = "https://github.com/MandalaChain/frontier", branch = "mandala-polkadot-v1.11.0", default-features = false }
+pallet-vesting = { git = "https://github.com/MandalaChain/polkadot-sdk", branch = "mandala-polkadot-v1.11.0", default-features = false }
 
 # host function
 moonbeam-primitives-ext = { git = "https://github.com/MandalaChain/moonbeam", branch = "mandala-polkadot-v1.11.0", default-features = false }

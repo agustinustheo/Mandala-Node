@@ -75,6 +75,7 @@ parachain-info = { package = "staging-parachain-info", workspace = true, default
 pallet-utility = { workspace = true }
 pallet-multisig = { workspace = true }
 cumulus-primitives-aura = { workspace = true }
+pallet-vesting = { workspace = true }
 
 
 # EVM
@@ -172,6 +173,7 @@ std = [
     "xcm/std",
     "pallet-multisig/std",
     "pallet-utility/std",
+    "pallet-vesting/std",
 ]
 
 runtime-benchmarks = [
