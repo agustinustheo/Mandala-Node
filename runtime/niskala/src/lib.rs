@@ -26,7 +26,7 @@ use sp_core::{crypto::KeyTypeId, Get, OpaqueMetadata, H160, H256, U256};
 use sp_runtime::{
     create_runtime_str, generic, impl_opaque_keys,
     traits::{
-        BlakeTwo256, Block as BlockT, DispatchInfoOf, Dispatchable, IdentifyAccount,
+        BlakeTwo256, Block as BlockT, ConvertInto, DispatchInfoOf, Dispatchable, IdentifyAccount,
         IdentityLookup, PostDispatchInfoOf, UniqueSaturatedInto, Verify,
     },
     transaction_validity::{TransactionSource, TransactionValidity, TransactionValidityError},
@@ -44,7 +44,10 @@ use frame_support::{
     construct_runtime, derive_impl,
     dispatch::DispatchClass,
     parameter_types,
-    traits::{ConstBool, ConstU32, ConstU64, ConstU8, EitherOfDiverse, FindAuthor, OnFinalize},
+    traits::{
+        ConstBool, ConstU32, ConstU64, ConstU8, EitherOfDiverse, FindAuthor, OnFinalize,
+        WithdrawReasons,
+    },
     weights::{
         constants::WEIGHT_REF_TIME_PER_SECOND, ConstantMultiplier, Weight, WeightToFeeCoefficient,
         WeightToFeeCoefficients, WeightToFeePolynomial,
@@ -518,6 +521,7 @@ impl pallet_vesting::Config for Runtime {
     type MinVestedTransfer = MinVestedTransfer;
     type WeightInfo = pallet_vesting::weights::SubstrateWeight<Runtime>;
     type UnvestedFundsAllowedWithdrawReasons = UnvestedFundsAllowedWithdrawReasons;
+    type BlockNumberProvider = System;
     const MAX_VESTING_SCHEDULES: u32 = 28;
 }
 
