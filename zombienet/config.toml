@@ -1,5 +1,6 @@
 [settings]
 timeout = 1000
+tmpDir = "/tmp/mandala-zombienet"
 
 [relaychain]
 default_command = "polkadot"
@@ -22,6 +23,6 @@ cumulus_based = true
 
 [parachains.collator]
 name = "mandala-collator-1"
-command = "mandala"
+command = "substrate-contracts-node"
 
 

@@ -17,9 +17,9 @@ else
 fi
 
 cd $ROOT
-cargo build --release
-rm -rf $ROOT/zombienet/binaries/mandala || true
-cp $ROOT/target/release/mandala $ROOT/zombienet/binaries/
+# cargo build --release
+# rm -rf $ROOT/zombienet/binaries/mandala || true
+# cp $ROOT/target/release/mandala $ROOT/zombienet/binaries/
 
 cd $ROOT/zombienet
 cp $CHAIN_PATH .
